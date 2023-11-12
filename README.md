@@ -8,7 +8,7 @@ https://steveseguin.github.io/sample-p2p-tunnel/remote - listens for incoming me
 
 This setup allows for bypassing of NAT firewalls, without bridge, vpn, or your own server.  Because its peer to peer, data is sent securely, privately, and there are not really costs.
 
-### minimal conceptual code rqeuirement
+### minimal conceptual code example
 
 push-side (send messages)
 ```

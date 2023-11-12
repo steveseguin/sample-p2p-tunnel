@@ -1,0 +1,27 @@
+<html>
+<body>
+<script>
+  var connectionID = "uniqueConnectionID"; // The same unique ID as above
+
+  // Setup to receive commands from the sender page
+  window.addEventListener("message", function (e) {
+    if ("dataReceived" in e.data) {
+      var command = e.data.dataReceived;
+      // Handle the received command (e.g., start or stop broadcast)
+      // This part will involve sending commands to OBS via WebSocket
+      console.log("Received command:", command);
+      // Example: if(command === "startBroadcast") { /* Start OBS broadcast */ }
+      // You will need to implement WebSocket communication here.
+    }
+  });
+
+  // Embedding VDO.Ninja iframe for receiving commands
+  window.onload = function() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://vdo.ninja/?datamode&view=" + connectionID;
+    iframe.style.display = "none"; // Hide the iframe
+    document.body.appendChild(iframe);
+  };
+</script>
+</body>
+</html>

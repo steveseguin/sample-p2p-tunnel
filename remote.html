@@ -1,6 +1,9 @@
 <html>
 <body>
 <script>
+
+  // This initial code is used to listen for messages via VDO.Ninja's iframe API for incoming p2p data.
+
   var connectionID = "uniqueConnectionID"; // The same unique ID as above
 
   // Setup to receive commands from the sender page
@@ -28,7 +31,12 @@
     document.body.appendChild(iframe);
   };
 
-  const obsWebSocketUrl = 'ws://127.0.0.1:4444'; // Replace with your OBS WebSocket server URL
+
+
+// everything below this point is OBS Websockets related.  It needs auth added, but it's the basic concept
+
+  
+const obsWebSocketUrl = 'ws://127.0.0.1:4444'; // Replace with your OBS WebSocket server URL
 
 let obsSocket = new WebSocket(obsWebSocketUrl);
 

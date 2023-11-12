@@ -12,11 +12,13 @@ This setup allows for bypassing of NAT firewalls, without bridge, vpn, or your o
 
 push-side (send messages)
 ```
- window.onload = function() {
-    var iframe = document.createElement("iframe");
-    iframe.src = "https://vdo.ninja/?datamode&push=" + connectionID;
-    document.body.appendChild(iframe);
-  };
+var iframe = document.createElement("iframe");
+iframe.src = "https://vdo.ninja/?datamode&push=" + connectionID;
+document.body.appendChild(iframe);
+
+// ... some time later
+iframe.contentWindow.postMessage({"sendData": "DataHere"}, '*');
+
 ```
 
 view-side (listen to messages)

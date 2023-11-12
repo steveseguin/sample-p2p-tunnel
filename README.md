@@ -35,3 +35,7 @@ view-side (listen to messages)
 ```
 
 A viewer can also respond/send messages, but in this case, it's setup to be one directional
+
+
+
+This code sample is pretty minimal, and more security checks, input validation, compatiblity, error control, etc, needs to be added.  it's just for example of the core logic

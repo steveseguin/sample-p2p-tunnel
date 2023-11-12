@@ -6,12 +6,17 @@
   // Setup to receive commands from the sender page
   window.addEventListener("message", function (e) {
     if ("dataReceived" in e.data) {
+      
       var command = e.data.dataReceived;
+      
       // Handle the received command (e.g., start or stop broadcast)
       // This part will involve sending commands to OBS via WebSocket
       console.log("Received command:", command);
+      
       // Example: if(command === "startBroadcast") { /* Start OBS broadcast */ }
       // You will need to implement WebSocket communication here.
+
+      sendCommandToOBS(command, {});
     }
   });
 
@@ -22,6 +27,59 @@
     iframe.style.display = "none"; // Hide the iframe
     document.body.appendChild(iframe);
   };
+
+  const obsWebSocketUrl = 'ws://127.0.0.1:4444'; // Replace with your OBS WebSocket server URL
+
+let obsSocket = new WebSocket(obsWebSocketUrl);
+
+obsSocket.onopen = function() {
+  console.log('Connected to OBS WebSocket server.');
+
+  // Authenticate if your OBS WebSocket server requires authentication
+  // sendCommandToOBS('GetAuthRequired', {}).then(... handle authentication ...);
+
+  // To start the broadcast
+  sendCommandToOBS('StartStreaming', {});
+
+  // To stop the broadcast
+  // sendCommandToOBS('StopStreaming', {});
+};
+
+obsSocket.onmessage = function(event) {
+  console.log('Message from OBS:', event.data);
+};
+
+obsSocket.onerror = function(error) {
+  console.error('WebSocket Error:', error);
+};
+
+function sendCommand(requestType, requestData) {
+  return new Promise((resolve, reject) => {
+    const messageId = generateMessageId();
+    const message = JSON.stringify({
+      'request-type': requestType,
+      'message-id': messageId,
+      ...requestData
+    });
+
+    obsSocket.send(message);
+
+    obsSocket.onmessage = function(event) {
+      let response = JSON.parse(event.data);
+      if (response['message-id'] === messageId) {
+        resolve(response);
+      }
+    };
+
+    obsSocket.onerror = function(error) {
+      reject(error);
+    };
+  });
+}
+
+function generateMessageId() {
+  return Math.random().toString(36).substring(2, 15);
+}
 </script>
 </body>
 </html>

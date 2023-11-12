@@ -11,8 +11,8 @@
   }
 
   // Example buttons for starting and stopping a broadcast
-  function startBroadcast() { sendCommandToOBS('StartStreaming', {}); }
-  function stopBroadcast() { sendCommandToOBS('StopStreaming', {}); }
+  function startBroadcast() { sendCommandToOBS('StartStreaming'); }
+  function stopBroadcast() { sendCommandToOBS('StopStreaming'); }
 
   // Embedding VDO.Ninja iframe for sending commands
   window.onload = function() {

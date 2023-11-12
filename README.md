@@ -18,7 +18,6 @@ document.body.appendChild(iframe);
 
 // ... some time later
 iframe.contentWindow.postMessage({"sendData": "DataHere"}, '*');
-
 ```
 
 view-side (listen to messages)

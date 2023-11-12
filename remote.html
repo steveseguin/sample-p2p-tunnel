@@ -1,5 +1,6 @@
 <html>
 <body>
+<div id="log"></div>
 <script>
 
   // This initial code is used to listen for messages via VDO.Ninja's iframe API for incoming p2p data.
@@ -15,11 +16,13 @@
       // Handle the received command (e.g., start or stop broadcast)
       // This part will involve sending commands to OBS via WebSocket
       console.log("Received command:", command);
-      
+
       // Example: if(command === "startBroadcast") { /* Start OBS broadcast */ }
       // You will need to implement WebSocket communication here.
 
       sendCommandToOBS(command, {});
+
+      document.getElementById("log").innerHTML += "Received command:"+ command;
     }
   });
 

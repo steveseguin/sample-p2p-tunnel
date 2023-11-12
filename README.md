@@ -34,7 +34,7 @@ view-side (listen to messages)
   };
 ```
 
-A viewer can also respond/send messages, but in this case, it's setup to be one directional.  Note that &datamode sets vdo.ninja up to be in data-only mode, bypassing the audio/video steps and instead auto-connects on page load.
+A viewer can also respond/send messages, but in this case, it's setup to be one directional.  Note that `&datamode` sets vdo.ninja up to be in data-only mode, bypassing the audio/video steps and instead auto-connects on page load.
 
 
 

@@ -1,0 +1,29 @@
+<html>
+<body>
+<script>
+  var connectionID = "uniqueConnectionID"; // A unique ID for the VDO.Ninja stream
+
+  function sendCommandToOBS(command) {
+    var iframe = document.getElementById("obsCommander");
+    if (iframe) {
+      iframe.contentWindow.postMessage({"sendData": command}, '*');
+    }
+  }
+
+  // Example buttons for starting and stopping a broadcast
+  function startBroadcast() { sendCommandToOBS("startBroadcast"); }
+  function stopBroadcast() { sendCommandToOBS("stopBroadcast"); }
+
+  // Embedding VDO.Ninja iframe for sending commands
+  window.onload = function() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://vdo.ninja/?datamode&push=" + connectionID;
+    iframe.style.display = "none"; // Hide the iframe
+    iframe.id = "obsCommander";
+    document.body.appendChild(iframe);
+  };
+</script>
+<button onclick="startBroadcast()">Start Broadcast</button>
+<button onclick="stopBroadcast()">Stop Broadcast</button>
+</body>
+</html>

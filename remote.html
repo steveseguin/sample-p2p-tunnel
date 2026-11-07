@@ -49,11 +49,7 @@ obsSocket.onopen = function() {
   // Authenticate if your OBS WebSocket server requires authentication
   // sendCommandToOBS('GetAuthRequired', {}).then(... handle authentication ...);
 
-  // To start the broadcast
-  sendCommandToOBS('StartStreaming', {});
-
-  // To stop the broadcast
-  // sendCommandToOBS('StopStreaming', {});
+  // Wait for an explicit command from the controller before changing OBS state.
 };
 
 obsSocket.onmessage = function(event) {
